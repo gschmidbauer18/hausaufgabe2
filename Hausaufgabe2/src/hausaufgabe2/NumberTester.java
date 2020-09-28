@@ -9,24 +9,26 @@ package hausaufgabe2;
  *
  * @author 43676
  */
-public class NumberTester{
-    public NumberTester (String fileName) {
+public class NumberTester {
     
-    }
     
-    public void setOddEvenTester (NumberTest oddTester ) {
-    
-    }
-    
-    public void setPrimeTester ( NumberTest primeTester) {
-    
+    public NumberTester(String fileName) {
+        
     }
 
-    public void setPalindromeTester ( NumberTest palindromeTester ) {
-    
+    public void setOddEvenTester(NumberTest oddTester) {
+        NumberTest isOdd = (i) -> (i%2) == 0;
     }
 
-    public void testFile ( ) {
-    
+    public void setPrimeTester(NumberTest primeTester) {
+
+    }
+
+    public void setPalindromeTester(NumberTest palindromeTester) {
+
+    }
+
+    public void testFile() {
+
     }
 }
