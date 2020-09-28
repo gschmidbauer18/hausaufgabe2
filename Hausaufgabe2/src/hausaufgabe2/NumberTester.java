@@ -52,7 +52,9 @@ public class NumberTester {
                 int i2=Integer.parseInt(input[1]);
                 if(i1==1)
                 {
-                    oddEvenTester.testNumber(i2);
+                    if(oddEvenTester.testNumber(i2)==true){
+                        
+                    }
                 }
                 else if(i1==2)
                 {
