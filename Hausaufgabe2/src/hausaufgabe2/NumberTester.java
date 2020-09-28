@@ -16,8 +16,8 @@ import java.io.IOException;
  */
 public class NumberTester {
     private NumberTest oddEvenTester;
-    private NumberTest setPrimeTester;
-    private NumberTest setPalindromeTester;
+    private NumberTest primeTester;
+    private NumberTest palindromeTester;
     String fileName;
     
     
@@ -34,11 +34,11 @@ public class NumberTester {
         /*primeTester = (int i) -> (
             
         );*/
-        this.setPrimeTester=primeTester;
+        this.primeTester=primeTester;
     }
 
     public void setPalindromeTester(NumberTest palindromeTester) {
-        this.setPalindromeTester=palindromeTester;
+        this.palindromeTester=palindromeTester;
     }
 
     public void testFile() {
@@ -47,22 +47,26 @@ public class NumberTester {
             String line=br.readLine();
             while(line!=null)
             {
-                /**final String[] input = line.split(" ");
+                final String[] input = line.split(" ");
                 int i1=Integer.parseInt(input[0]);
                 int i2=Integer.parseInt(input[1]);
                 if(i1==1)
                 {
-                    
+                    oddEvenTester.testNumber(i2);
                 }
-                else if()
+                else if(i1==2)
                 {
-                
+                    primeTester.testNumber(i2);
+                }
+                else if(i1==3)
+                {
+                    palindromeTester.testNumber(i2);
                 }
                 else
                 {
-                
+                    System.out.println("Error");
                 }
-                line=br.readLine();*/
+                line=br.readLine();
             }
         } catch (FileNotFoundException ex) {
             System.out.println("File not Found.");

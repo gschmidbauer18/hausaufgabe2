@@ -15,6 +15,11 @@ public class EratosthenesPrimeSieve implements PrimeSieve {
 
     private int obergrenzePrimzahlen;
 
+    public EratosthenesPrimeSieve() {
+    }
+
+    
+    
     public EratosthenesPrimeSieve(int pobergrenzePrimzahlen) {
         this.obergrenzePrimzahlen = pobergrenzePrimzahlen;
     }
