@@ -17,11 +17,11 @@ public class NumberTester {
     }
 
     public void setOddEvenTester(NumberTest oddTester) {
-        NumberTest isOdd = (i) -> (i%2) == 0;
+        oddTester = (i) -> (i%2) == 0;
     }
 
     public void setPrimeTester(NumberTest primeTester) {
-
+        
     }
 
     public void setPalindromeTester(NumberTest palindromeTester) {
