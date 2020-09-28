@@ -24,5 +24,7 @@ public class HalloJavamitForEach {
         {
             System.out.println(s);
         }
+        
+        stringListe.forEach((String s)->System.out.println(s));
     }
 }
