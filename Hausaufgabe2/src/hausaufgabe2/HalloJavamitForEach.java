@@ -13,14 +13,16 @@ import java.util.List;
  * @author 43676
  */
 public class HalloJavamitForEach {
-    
-    public void forEachListe()
-    {
-        List<String> stringListe=new ArrayList<>();
+
+    public void forEachListe() {
+        List<String> stringListe = new ArrayList<>();
         stringListe.add("Eins");
         stringListe.add("Zwei");
         stringListe.add("Drei");
-        
-        
+
+        for(String s: stringListe)
+        {
+            System.out.println(s);
+        }
     }
 }
