@@ -16,6 +16,11 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        NumberTester tester= new NumberTester("");
+        EratosthenesPrimeSieve eps= new EratosthenesPrimeSieve(10);
+        
+        tester.setOddEvenTester((i) -> (i%2) == 0);
+        tester.setPrimeTester((i) -> eps.isPrime(i));
+        //tester.setPalindromeTester();
     }
-    
 }
