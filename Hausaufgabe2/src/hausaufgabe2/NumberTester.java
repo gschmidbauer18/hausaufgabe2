@@ -43,26 +43,46 @@ public class NumberTester {
 
     public void testFile() {
         try {
-            BufferedReader br=new BufferedReader(new FileReader(fileName));
+            BufferedReader br=new BufferedReader(new FileReader(this.fileName));
             String line=br.readLine();
+            line=br.readLine();
             while(line!=null)
             {
+                
                 final String[] input = line.split(" ");
                 int i1=Integer.parseInt(input[0]);
                 int i2=Integer.parseInt(input[1]);
                 if(i1==1)
                 {
                     if(oddEvenTester.testNumber(i2)==true){
-                        
+                        System.out.println("EVEN");
+                    }
+                    else
+                    {
+                        System.out.println("ODD");
                     }
                 }
                 else if(i1==2)
                 {
-                    primeTester.testNumber(i2);
+                    if(primeTester.testNumber(i2)==true)
+                    {
+                        System.out.println("PRIME");
+                    }
+                    else
+                    {
+                        System.out.println("NO PRIME");
+                    }
                 }
                 else if(i1==3)
                 {
-                    palindromeTester.testNumber(i2);
+                    if(palindromeTester.testNumber(i2)==true)
+                    {
+                        System.out.println("PALINDROME");
+                    }
+                    else
+                    {
+                        System.out.println("NO PALINDROME");
+                    }
                 }
                 else
                 {

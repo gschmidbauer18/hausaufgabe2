@@ -5,6 +5,11 @@
  */
 package hausaufgabe2;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
 /**
@@ -18,7 +23,8 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        NumberTester tester= new NumberTester("file");
+        String filename="file";
+        NumberTester tester= new NumberTester(filename);
         EratosthenesPrimeSieve eps= new EratosthenesPrimeSieve();
         
         tester.setOddEvenTester((i) -> (i%2) == 0);
