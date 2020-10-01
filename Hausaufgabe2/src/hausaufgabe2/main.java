@@ -49,7 +49,8 @@ public class main {
         int ya=0;
         int yb=0;
        
-        
+        Number x=new Number();
+        Number y=new Number();
         
         do
         {
@@ -60,6 +61,11 @@ public class main {
             if(actInput==1)
             {
                 numberEnter(xa, xb, ya, yb);
+                x.setA(xa);
+                x.setB(xb);
+                y.setA(ya);
+                y.setB(yb);
+                
                 operationChooser(actInput);
                 
                 RationalCalculator rc=new RationalCalculator(
@@ -138,19 +144,19 @@ public class main {
                 
                 if(actInput==1)
                 {
-                    
+                    rc.add(x, y);
                 }
                 if(actInput==2)
                 {
-                    
+                    rc.subtract(x, y);
                 }
                 if(actInput==3)
                 {
-                    
+                    rc.multiply(x, y);
                 }
                 if(actInput==4)
                 {
-                    
+                    rc.divide(x, y);
                 }
                 else
                 {
@@ -160,11 +166,21 @@ public class main {
             if(actInput==2)
             {
                 numberEnter(xa, xb, ya, yb);
+                x.setA(xa);
+                x.setB(xb);
+                y.setA(ya);
+                y.setB(yb);
+                
                 operationChooser(actInput);
             }
             if(actInput==3)
             {
                 numberEnter(xa, xb, ya, yb);
+                x.setA(xa);
+                x.setB(xb);
+                y.setA(ya);
+                y.setB(yb);
+                
                 operationChooser(actInput);
             }
             if(actInput==4)
