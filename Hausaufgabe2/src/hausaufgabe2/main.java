@@ -21,6 +21,10 @@ public class main {
 
     static Scanner sc=new Scanner(System.in);
     static double zahl3=0.0;
+    static double xa=0.0;
+    static double xb=0.0;
+    static double ya=0.0;
+    static double yb=0.0;
     /**
      * @param args the command line arguments
      */
@@ -45,10 +49,7 @@ public class main {
         int actInput=0;
         boolean stop=false;
         
-        int xa=0;
-        int xb=0;
-        int ya=0;
-        int yb=0;
+        
        
         Number x=new Number();
         Number y=new Number();
@@ -61,7 +62,7 @@ public class main {
             
             if(actInput==1)
             {
-                numberEnter(xa, xb, ya, yb);
+                numberEnter();
                 x.setA(xa);
                 x.setB(xb);
                 y.setA(ya);
@@ -69,79 +70,59 @@ public class main {
                 
                 operationChooser(actInput);
                 
-                RationalCalculator rc=new RationalCalculator(
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        if(x.getB()==y.getB())
-                        {
-                            double xy=x.getA()+y.getA();
-                            Number erg=new Number();
-                            erg.setA(xy);
-                            erg.setB(x.getB());
-                            return erg;
-                        }
-                        else
-                        {
-                            double nenner=x.getB()*y.getB();
-                            double zähler1=x.getA()*y.getB();
-                            double zähler2=y.getA()*x.getB();
-                            
-                            double xy=zähler1+zähler2;
-                            Number erg=new Number();
-                            erg.setA(xy);
-                            erg.setB(nenner);
-                            return erg;
-                        }
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        if(x.getB()==y.getB())
-                        {
-                            double xy=x.getA()-y.getA();
-                            Number erg=new Number();
-                            erg.setA(xy);
-                            erg.setB(x.getB());
-                            return erg;
-                        }
-                        else
-                        {
-                            double nenner=x.getB()*y.getB();
-                            double zähler1=x.getA()*y.getB();
-                            double zähler2=y.getA()*x.getB();
-                            
-                            double xy=zähler1-zähler2;
-                            Number erg=new Number();
-                            erg.setA(xy);
-                            erg.setB(nenner);
-                            return erg;
-                        }
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double xyZ=x.getA()*y.getA();
-                        double xyN=x.getB()*y.getB();
+                CalculationOperation cadd=(Number x1, Number y1) -> {
+                    if (x1.getB() == y1.getB()) {
+                        double xy = x1.getA() + y1.getA();
                         Number erg=new Number();
-                            erg.setA(xyZ);
-                            erg.setB(xyN);
-                            return erg;
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double xyZ=x.getA()*y.getB();
-                        double xyN=x.getB()*y.getA();
+                        erg.setA(xy);
+                        erg.setB(x1.getB());
+                        return erg;
+                    } else {
+                        double nenner = x1.getB() * y1.getB();
+                        double zähler1 = x1.getA() * y1.getB();
+                        double zähler2 = y1.getA() * x1.getB();
+                        double xy=zähler1+zähler2;
                         Number erg=new Number();
-                            erg.setA(xyZ);
-                            erg.setB(xyN);
-                            return erg;
+                        erg.setA(xy);
+                        erg.setB(nenner);
+                        return erg;
                     }
-                });
+                };
+                CalculationOperation csub= (Number x1, Number y1) -> {
+                    if (x1.getB() == y1.getB()) {
+                        double xy = x1.getA() - y1.getA();
+                        Number erg=new Number();
+                        erg.setA(xy);
+                        erg.setB(x1.getB());
+                        return erg;
+                    } else {
+                        double nenner = x1.getB() * y1.getB();
+                        double zähler1 = x1.getA() * y1.getB();
+                        double zähler2 = y1.getA() * x1.getB();
+                        double xy=zähler1-zähler2;
+                        Number erg=new Number();
+                        erg.setA(xy);
+                        erg.setB(nenner);
+                        return erg;
+                    }
+                };
+                CalculationOperation cmult= (Number x1, Number y1) -> {
+                    double xyZ = x1.getA() * y1.getA();
+                    double xyN = x1.getB() * y1.getB();
+                    Number erg=new Number();
+                    erg.setA(xyZ);
+                    erg.setB(xyN);
+                    return erg;
+                };
+                CalculationOperation cdiv= (Number x1, Number y1) -> {
+                    double xyZ = x1.getA() * y1.getB();
+                    double xyN = x1.getB() * y1.getA();
+                    Number erg=new Number();
+                    erg.setA(xyZ);
+                    erg.setB(xyN);
+                    return erg;
+                };
+                RationalCalculator rc=new RationalCalculator(cadd,csub,cmult,cdiv);
                 
                 if(actInput==1)
                 {
@@ -176,7 +157,7 @@ public class main {
             }
             if(actInput==2)
             {
-                numberEnter(xa, xb, ya, yb);
+                numberEnter();
                 x.setA(xa);
                 x.setB(xb);
                 y.setA(ya);
@@ -186,58 +167,35 @@ public class main {
                 operationChooser(actInput);
                 
                 VectorCalculator vc=new VectorCalculator(
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double zah1=x.getA()+y.getA();
-                        double zah2=y.getB()+x.getB();
-                        
-                        Number erg=new Number();
-                        erg.setA(zah1);
-                        erg.setB(zah2);
-                        
-                        return erg;
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double zah1=x.getA()-y.getA();
-                        double zah2=x.getB()-y.getB();
-                        
-                        Number erg=new Number();
-                        erg.setA(zah1);
-                        erg.setB(zah2);
-                        
-                        return erg;
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double zah1=x.getB()*0-0*y.getB();
-                        double zah2=y.getA()*0-0*x.getA();
-                        zahl3=x.getA()*y.getB()-x.getB()*y.getA();
-                        
-                        Number erg=new Number();
-                        erg.setA(zah1);
-                        erg.setB(zah2);
-                        
-                        return erg;
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double zah1=x.getA()+x.getB();
-                        double zah2=y.getA()+y.getB();
-                        
-                        Number erg=new Number();
-                        erg.setA(zah1);
-                        erg.setB(zah2);
-                        
-                        return erg;
-                    }
+                        (Number x1, Number y1) -> {
+                            double zah1 = x1.getA() + y1.getA();
+                            double zah2 = y1.getB() + x1.getB();
+                            Number erg=new Number();
+                            erg.setA(zah1);
+                            erg.setB(zah2);
+                            return erg;
+                }, (Number x1, Number y1) -> {
+                    double zah1 = x1.getA() - y1.getA();
+                    double zah2 = x1.getB() - y1.getB();
+                    Number erg=new Number();
+                    erg.setA(zah1);
+                    erg.setB(zah2);
+                    return erg;
+                }, (Number x1, Number y1) -> {
+                    double zah1 = x1.getB() * 0 - 0 * y1.getB();
+                    double zah2 = y1.getA() * 0 - 0 * x1.getA();
+                    zahl3 = x1.getA() * y1.getB() - x1.getB() * y1.getA();
+                    Number erg=new Number();
+                    erg.setA(zah1);
+                    erg.setB(zah2);
+                    return erg;
+                }, (Number x1, Number y1) -> {
+                    double zah1 = x1.getA() + x1.getB();
+                    double zah2 = y1.getA() + y1.getB();
+                    Number erg=new Number();
+                    erg.setA(zah1);
+                    erg.setB(zah2);
+                    return erg;
                 });
                 
                 if(actInput==1)
@@ -275,7 +233,7 @@ public class main {
             }
             if(actInput==3)
             {
-                numberEnter(xa, xb, ya, yb);
+                numberEnter();
                 x.setA(xa);
                 x.setB(xb);
                 y.setA(ya);
@@ -284,67 +242,42 @@ public class main {
                 operationChooser(actInput);
                 
                 ComplexCalculator cc=new ComplexCalculator(
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double zah1=x.getA()+y.getA();
-                        double zah2=y.getB()+x.getB();
-                        
-                        Number erg=new Number();
-                        erg.setA(zah1);
-                        erg.setB(zah2);
-                        
-                        return erg;
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double zah1=x.getA()-y.getA();
-                        double zah2=y.getB()-x.getB();
-                        
-                        Number erg=new Number();
-                        erg.setA(zah1);
-                        erg.setB(zah2);
-                        
-                        return erg;
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double zah1=x.getA()*y.getA();
-                        double zahl1=x.getA()*y.getB();
-                        double zah2=x.getB()-y.getA();
-                        double zahl22=x.getB()*y.getB();
-                        
-                        double zahl111=zah1+zah2;
-                        double zahl222=zahl1+zahl22;
-                        
-                        Number erg=new Number();
-                        erg.setA(zahl111);
-                        erg.setB(zahl222);
-                        
-                        return erg;
-                    }
-                }, 
-                        new CalculationOperation() {
-                    @Override
-                    public Number calc(Number x, Number y) {
-                        double zah1=x.getA()*y.getA();
-                        double zahl1=x.getA()*y.getB();
-                        double zah2=x.getB()-y.getA();
-                        double zahl22=x.getB()*y.getB();
-                        
-                        double zahl111=zah1+zah2;
-                        double zahl222=zahl1+zahl22;
-                        
-                        Number erg=new Number();
-                        erg.setA(zahl111);
-                        erg.setB(zahl222);
-                        
-                        return erg;
-                    }
+                        (Number x1, Number y1) -> {
+                            double zah1 = x1.getA() + y1.getA();
+                            double zah2 = y1.getB() + x1.getB();
+                            Number erg=new Number();
+                            erg.setA(zah1);
+                            erg.setB(zah2);
+                            return erg;
+                }, (Number x1, Number y1) -> {
+                    double zah1 = x1.getA() - y1.getA();
+                    double zah2 = y1.getB() - x1.getB();
+                    Number erg=new Number();
+                    erg.setA(zah1);
+                    erg.setB(zah2);
+                    return erg;
+                }, (Number x1, Number y1) -> {
+                    double zah1 = x1.getA() * y1.getA();
+                    double zahl1 = x1.getA() * y1.getB();
+                    double zah2 = x1.getB() - y1.getA();
+                    double zahl22 = x1.getB() * y1.getB();
+                    double zahl111=zah1+zah2;
+                    double zahl222=zahl1+zahl22;
+                    Number erg=new Number();
+                    erg.setA(zahl111);
+                    erg.setB(zahl222);
+                    return erg;
+                }, (Number x1, Number y1) -> {
+                    double zah1 = x1.getA() * y1.getA();
+                    double zahl1 = x1.getA() * y1.getB();
+                    double zah2 = x1.getB() - y1.getA();
+                    double zahl22 = x1.getB() * y1.getB();
+                    double zahl111=zah1+zah2;
+                    double zahl222=zahl1+zahl22;
+                    Number erg=new Number();
+                    erg.setA(zahl111);
+                    erg.setB(zahl222);
+                    return erg;
                 });
                 
                 if(actInput==1)
@@ -398,20 +331,20 @@ public class main {
         System.out.println("4- Exit program");
     }
     
-    public static void numberEnter(double a,double b,double aa,double bb)
+    public static void numberEnter()
     {
         System.out.println("Enter number x a>");
         String xaString=sc.nextLine();
-        a=Integer.parseInt(xaString);
+        xa=Integer.parseInt(xaString);
         System.out.println("Enter number x b>");
         String xbString=sc.nextLine();
-        b=Integer.parseInt(xbString);
+        xb=Integer.parseInt(xbString);
         System.out.println("Enter number y a>");
         String yaString=sc.nextLine();
-        aa=Integer.parseInt(yaString);
+        ya=Integer.parseInt(yaString);
         System.out.println("Enter number y b>");
         String ybString=sc.nextLine();
-        bb=Integer.parseInt(ybString);
+        yb=Integer.parseInt(ybString);
     }
     
     public static void operationChooser(int input)

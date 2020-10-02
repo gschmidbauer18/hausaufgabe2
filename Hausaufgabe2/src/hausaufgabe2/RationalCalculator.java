@@ -18,22 +18,22 @@ public class RationalCalculator extends AbstractCalculator{
 
     @Override
     public Number add(Number a, Number b) {
-        return this.add.calc(a, b);
+        return add.calc(a, b);
     }
 
     @Override
     public Number subtract(Number a, Number b) {
-        return this.subtract.calc(a, b);
+        return subtract.calc(a, b);
     }
 
     @Override
     public Number multiply(Number a, Number b) {
-        return this.multiply.calc(a, b);
+        return multiply.calc(a, b);
     }
 
     @Override
     public Number divide(Number a, Number b) {
-        return this.divide.calc(a, b);
+        return divide.calc(a, b);
     }
     
 }
