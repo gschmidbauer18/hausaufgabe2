@@ -10,7 +10,6 @@ package hausaufgabe2;
  * @author 43676
  */
 public class RationalCalculator extends AbstractCalculator{
-    boolean searchNenner;
     
     public RationalCalculator(CalculationOperation add, CalculationOperation subtract, CalculationOperation multiply, CalculationOperation divide) {
         super(add, subtract,multiply,divide);
