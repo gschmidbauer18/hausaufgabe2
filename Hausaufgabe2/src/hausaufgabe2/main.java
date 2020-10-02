@@ -20,6 +20,7 @@ import java.util.stream.IntStream;
 public class main {
 
     static Scanner sc=new Scanner(System.in);
+    static double zahl3=0.0;
     /**
      * @param args the command line arguments
      */
@@ -144,19 +145,29 @@ public class main {
                 
                 if(actInput==1)
                 {
-                    rc.add(x, y);
+                    Number erg=rc.add(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
+                    System.out.println("b="+erg.getB());
                 }
                 if(actInput==2)
                 {
-                    rc.subtract(x, y);
+                    Number erg=rc.subtract(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
+                    System.out.println("b="+erg.getB());
                 }
                 if(actInput==3)
                 {
-                    rc.multiply(x, y);
+                    Number erg=rc.multiply(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
                 }
                 if(actInput==4)
                 {
-                    rc.divide(x, y);
+                    Number erg=rc.divide(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
                 }
                 else
                 {
@@ -171,7 +182,96 @@ public class main {
                 y.setA(ya);
                 y.setB(yb);
                 
+                
                 operationChooser(actInput);
+                
+                VectorCalculator vc=new VectorCalculator(
+                        new CalculationOperation() {
+                    @Override
+                    public Number calc(Number x, Number y) {
+                        double zahl1=x.getA()+y.getA();
+                        double zahl2=y.getB()+x.getB();
+                        
+                        Number erg=new Number();
+                        erg.setA(zahl1);
+                        erg.setB(zahl2);
+                        
+                        return erg;
+                    }
+                }, 
+                        new CalculationOperation() {
+                    @Override
+                    public Number calc(Number x, Number y) {
+                        double zahl1=x.getA()-y.getA();
+                        double zahl2=x.getB()-y.getB();
+                        
+                        Number erg=new Number();
+                        erg.setA(zahl1);
+                        erg.setB(zahl2);
+                        
+                        return erg;
+                    }
+                }, 
+                        new CalculationOperation() {
+                    @Override
+                    public Number calc(Number x, Number y) {
+                        double zahl1=x.getB()*0-0*y.getB();
+                        double zahl2=y.getA()*0-0*x.getA();
+                        zahl3=x.getA()*y.getB()-x.getB()*y.getA();
+                        
+                        Number erg=new Number();
+                        erg.setA(zahl1);
+                        erg.setB(zahl2);
+                        
+                        return erg;
+                    }
+                }, 
+                        new CalculationOperation() {
+                    @Override
+                    public Number calc(Number x, Number y) {
+                        double zahl1=x.getA()+x.getB();
+                        double zahl2=y.getA()+y.getB();
+                        
+                        Number erg=new Number();
+                        erg.setA(zahl1);
+                        erg.setB(zahl2);
+                        
+                        return erg;
+                    }
+                });
+                
+                if(actInput==1)
+                {
+                    Number erg=vc.add(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
+                    System.out.println("b="+erg.getB());
+                }
+                if(actInput==2)
+                {
+                    Number erg=vc.subtract(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
+                    System.out.println("b="+erg.getB());
+                }
+                if(actInput==3)
+                {
+                    Number erg=vc.multiply(x, y);
+                    System.out.println("Kreuzprodukt:");
+                    System.out.println("a="+erg.getA());
+                    System.out.println("b="+erg.getB());
+                    System.out.println("c="+zahl3);
+                }
+                if(actInput==4)
+                {
+                    Number erg=vc.divide(x, y);
+                    System.out.println("Skalarprodukt ist:");
+                    System.out.println(erg.getA()+erg.getB());
+                }
+                else
+                {
+                    System.out.println("Unvalid Input");
+                }
             }
             if(actInput==3)
             {
@@ -182,6 +282,39 @@ public class main {
                 y.setB(yb);
                 
                 operationChooser(actInput);
+                
+                
+                
+                if(actInput==1)
+                {
+                    Number erg=cc.add(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
+                    System.out.println("b="+erg.getB());
+                }
+                if(actInput==2)
+                {
+                    Number erg=cc.subtract(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
+                    System.out.println("b="+erg.getB());
+                }
+                if(actInput==3)
+                {
+                    Number erg=cc.multiply(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
+                }
+                if(actInput==4)
+                {
+                    Number erg=cc.divide(x, y);
+                    System.out.println("Ergebniss:");
+                    System.out.println("a="+erg.getA());
+                }
+                else
+                {
+                    System.out.println("Unvalid Input");
+                }
             }
             if(actInput==4)
             {
