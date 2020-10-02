@@ -189,12 +189,12 @@ public class main {
                         new CalculationOperation() {
                     @Override
                     public Number calc(Number x, Number y) {
-                        double zahl1=x.getA()+y.getA();
-                        double zahl2=y.getB()+x.getB();
+                        double zah1=x.getA()+y.getA();
+                        double zah2=y.getB()+x.getB();
                         
                         Number erg=new Number();
-                        erg.setA(zahl1);
-                        erg.setB(zahl2);
+                        erg.setA(zah1);
+                        erg.setB(zah2);
                         
                         return erg;
                     }
@@ -202,12 +202,12 @@ public class main {
                         new CalculationOperation() {
                     @Override
                     public Number calc(Number x, Number y) {
-                        double zahl1=x.getA()-y.getA();
-                        double zahl2=x.getB()-y.getB();
+                        double zah1=x.getA()-y.getA();
+                        double zah2=x.getB()-y.getB();
                         
                         Number erg=new Number();
-                        erg.setA(zahl1);
-                        erg.setB(zahl2);
+                        erg.setA(zah1);
+                        erg.setB(zah2);
                         
                         return erg;
                     }
@@ -215,13 +215,13 @@ public class main {
                         new CalculationOperation() {
                     @Override
                     public Number calc(Number x, Number y) {
-                        double zahl1=x.getB()*0-0*y.getB();
-                        double zahl2=y.getA()*0-0*x.getA();
+                        double zah1=x.getB()*0-0*y.getB();
+                        double zah2=y.getA()*0-0*x.getA();
                         zahl3=x.getA()*y.getB()-x.getB()*y.getA();
                         
                         Number erg=new Number();
-                        erg.setA(zahl1);
-                        erg.setB(zahl2);
+                        erg.setA(zah1);
+                        erg.setB(zah2);
                         
                         return erg;
                     }
@@ -229,12 +229,12 @@ public class main {
                         new CalculationOperation() {
                     @Override
                     public Number calc(Number x, Number y) {
-                        double zahl1=x.getA()+x.getB();
-                        double zahl2=y.getA()+y.getB();
+                        double zah1=x.getA()+x.getB();
+                        double zah2=y.getA()+y.getB();
                         
                         Number erg=new Number();
-                        erg.setA(zahl1);
-                        erg.setB(zahl2);
+                        erg.setA(zahl);
+                        erg.setB(zah2);
                         
                         return erg;
                     }
@@ -283,21 +283,83 @@ public class main {
                 
                 operationChooser(actInput);
                 
-                
+                ComplexCalculator cc=new ComplexCalculator(
+                        new CalculationOperation() {
+                    @Override
+                    public Number calc(Number x, Number y) {
+                        double zah1=x.getA()+y.getA();
+                        double zah2=y.getB()+x.getB();
+                        
+                        Number erg=new Number();
+                        erg.setA(zah1);
+                        erg.setB(zah2);
+                        
+                        return erg;
+                    }
+                }, 
+                        new CalculationOperation() {
+                    @Override
+                    public Number calc(Number x, Number y) {
+                        double zah1=x.getA()-y.getA();
+                        double zah2=y.getB()-x.getB();
+                        
+                        Number erg=new Number();
+                        erg.setA(zah1);
+                        erg.setB(zah2);
+                        
+                        return erg;
+                    }
+                }, 
+                        new CalculationOperation() {
+                    @Override
+                    public Number calc(Number x, Number y) {
+                        double zah1=x.getA()*y.getA();
+                        double zahl1=x.getA()*y.getB();
+                        double zah2=x.getB()-y.getA();
+                        double zahl22=x.getB()*y.getB();
+                        
+                        double zahl111=zah1+zah2;
+                        double zahl222=zahl1+zahl22;
+                        
+                        Number erg=new Number();
+                        erg.setA(zahl111);
+                        erg.setB(zahl222);
+                        
+                        return erg;
+                    }
+                }, 
+                        new CalculationOperation() {
+                    @Override
+                    public Number calc(Number x, Number y) {
+                        double zah1=x.getA()*y.getA();
+                        double zahl1=x.getA()*y.getB();
+                        double zah2=x.getB()-y.getA();
+                        double zahl22=x.getB()*y.getB();
+                        
+                        double zahl111=zah1+zah2;
+                        double zahl222=zahl1+zahl22;
+                        
+                        Number erg=new Number();
+                        erg.setA(zahl111);
+                        erg.setB(zahl222);
+                        
+                        return erg;
+                    }
+                });
                 
                 if(actInput==1)
                 {
                     Number erg=cc.add(x, y);
                     System.out.println("Ergebniss:");
                     System.out.println("a="+erg.getA());
-                    System.out.println("b="+erg.getB());
+                    System.out.println("b="+erg.getB()+"i");
                 }
                 if(actInput==2)
                 {
                     Number erg=cc.subtract(x, y);
                     System.out.println("Ergebniss:");
                     System.out.println("a="+erg.getA());
-                    System.out.println("b="+erg.getB());
+                    System.out.println("b="+erg.getB()+"i");
                 }
                 if(actInput==3)
                 {
