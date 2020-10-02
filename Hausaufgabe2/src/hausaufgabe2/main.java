@@ -233,7 +233,7 @@ public class main {
                         double zah2=y.getA()+y.getB();
                         
                         Number erg=new Number();
-                        erg.setA(zahl);
+                        erg.setA(zah1);
                         erg.setB(zah2);
                         
                         return erg;
