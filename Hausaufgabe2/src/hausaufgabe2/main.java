@@ -25,6 +25,7 @@ public class main {
     static double xb=0.0;
     static double ya=0.0;
     static double yb=0.0;
+    static int actInput=0;
     /**
      * @param args the command line arguments
      */
@@ -46,7 +47,6 @@ public class main {
         
         tester.testFile();*/
         String input;
-        int actInput=0;
         boolean stop=false;
         
         
@@ -68,7 +68,7 @@ public class main {
                 y.setA(ya);
                 y.setB(yb);
                 
-                operationChooser(actInput);
+                operationChooser();
                 
                 CalculationOperation cadd=(Number x1, Number y1) -> {
                     if (x1.getB() == y1.getB()) {
@@ -131,20 +131,20 @@ public class main {
                     System.out.println("a="+erg.getA());
                     System.out.println("b="+erg.getB());
                 }
-                if(actInput==2)
+                else if(actInput==2)
                 {
                     Number erg=rc.subtract(x, y);
                     System.out.println("Ergebniss:");
                     System.out.println("a="+erg.getA());
                     System.out.println("b="+erg.getB());
                 }
-                if(actInput==3)
+                else if(actInput==3)
                 {
                     Number erg=rc.multiply(x, y);
                     System.out.println("Ergebniss:");
                     System.out.println("a="+erg.getA());
                 }
-                if(actInput==4)
+                else if(actInput==4)
                 {
                     Number erg=rc.divide(x, y);
                     System.out.println("Ergebniss:");
@@ -155,7 +155,7 @@ public class main {
                     System.out.println("Unvalid Input");
                 }
             }
-            if(actInput==2)
+            else if(actInput==2)
             {
                 numberEnter();
                 x.setA(xa);
@@ -164,24 +164,25 @@ public class main {
                 y.setB(yb);
                 
                 
-                operationChooser(actInput);
+                operationChooser();
                 
-                VectorCalculator vc=new VectorCalculator(
-                        (Number x1, Number y1) -> {
+                CalculationOperation vadd=(Number x1, Number y1) -> {
                             double zah1 = x1.getA() + y1.getA();
                             double zah2 = y1.getB() + x1.getB();
                             Number erg=new Number();
                             erg.setA(zah1);
                             erg.setB(zah2);
                             return erg;
-                }, (Number x1, Number y1) -> {
+                };
+                CalculationOperation vsub= (Number x1, Number y1) -> {
                     double zah1 = x1.getA() - y1.getA();
                     double zah2 = x1.getB() - y1.getB();
                     Number erg=new Number();
                     erg.setA(zah1);
                     erg.setB(zah2);
                     return erg;
-                }, (Number x1, Number y1) -> {
+                };
+                CalculationOperation vmult= (Number x1, Number y1) -> {
                     double zah1 = x1.getB() * 0 - 0 * y1.getB();
                     double zah2 = y1.getA() * 0 - 0 * x1.getA();
                     zahl3 = x1.getA() * y1.getB() - x1.getB() * y1.getA();
@@ -189,14 +190,17 @@ public class main {
                     erg.setA(zah1);
                     erg.setB(zah2);
                     return erg;
-                }, (Number x1, Number y1) -> {
+                };
+                CalculationOperation vdiv= (Number x1, Number y1) -> {
                     double zah1 = x1.getA() + x1.getB();
                     double zah2 = y1.getA() + y1.getB();
                     Number erg=new Number();
                     erg.setA(zah1);
                     erg.setB(zah2);
                     return erg;
-                });
+                };
+                
+                VectorCalculator vc=new VectorCalculator(vadd, vsub, vmult,vdiv);
                 
                 if(actInput==1)
                 {
@@ -205,14 +209,14 @@ public class main {
                     System.out.println("a="+erg.getA());
                     System.out.println("b="+erg.getB());
                 }
-                if(actInput==2)
+                else if(actInput==2)
                 {
                     Number erg=vc.subtract(x, y);
                     System.out.println("Ergebniss:");
                     System.out.println("a="+erg.getA());
                     System.out.println("b="+erg.getB());
                 }
-                if(actInput==3)
+                else if(actInput==3)
                 {
                     Number erg=vc.multiply(x, y);
                     System.out.println("Kreuzprodukt:");
@@ -220,7 +224,7 @@ public class main {
                     System.out.println("b="+erg.getB());
                     System.out.println("c="+zahl3);
                 }
-                if(actInput==4)
+                else if(actInput==4)
                 {
                     Number erg=vc.divide(x, y);
                     System.out.println("Skalarprodukt ist:");
@@ -231,7 +235,7 @@ public class main {
                     System.out.println("Unvalid Input");
                 }
             }
-            if(actInput==3)
+            else if(actInput==3)
             {
                 numberEnter();
                 x.setA(xa);
@@ -239,7 +243,7 @@ public class main {
                 y.setA(ya);
                 y.setB(yb);
                 
-                operationChooser(actInput);
+                operationChooser();
                 
                 ComplexCalculator cc=new ComplexCalculator(
                         (Number x1, Number y1) -> {
@@ -287,20 +291,20 @@ public class main {
                     System.out.println("a="+erg.getA());
                     System.out.println("b="+erg.getB()+"i");
                 }
-                if(actInput==2)
+                else if(actInput==2)
                 {
                     Number erg=cc.subtract(x, y);
                     System.out.println("Ergebniss:");
                     System.out.println("a="+erg.getA());
                     System.out.println("b="+erg.getB()+"i");
                 }
-                if(actInput==3)
+                else if(actInput==3)
                 {
                     Number erg=cc.multiply(x, y);
                     System.out.println("Ergebniss:");
                     System.out.println("a="+erg.getA());
                 }
-                if(actInput==4)
+                else if(actInput==4)
                 {
                     Number erg=cc.divide(x, y);
                     System.out.println("Ergebniss:");
@@ -311,7 +315,7 @@ public class main {
                     System.out.println("Unvalid Input");
                 }
             }
-            if(actInput==4)
+            else if(actInput==4)
             {
                 stop=true;
             }
@@ -347,7 +351,7 @@ public class main {
         yb=Integer.parseInt(ybString);
     }
     
-    public static void operationChooser(int input)
+    public static void operationChooser()
     {
         System.out.println("Choose the operation:");
         System.out.println("1 - add");
@@ -356,6 +360,6 @@ public class main {
         System.out.println("4 - divide");
         System.out.println("5 - enter the numbers again");
         String sinput=sc.nextLine();
-        input=Integer.parseInt(sinput);
+        actInput=Integer.parseInt(sinput);
     }
 }
